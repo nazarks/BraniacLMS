@@ -1,4 +1,4 @@
-{% extends 'mainapp\base.html' %}
+{% extends 'base.html' %}
 {% load static markdownify %}
 
 {% block title %}
@@ -6,7 +6,7 @@
 {% endblock title %}
 
 {% block content %}
-{% include 'mainapp/include/main_menu.html'%}
+{% include 'includes/main_menu.html'%}
 <div class="container-sm">
 <h1 class="mt-2">
     {{ course_object.name }}
@@ -93,7 +93,7 @@
         </div>
     {% endfor %}
 </div>
-{% include 'mainapp/include/main_footer.html'%}
+{% include 'includes/main_footer.html'%}
 </div>
 {% endblock content %}
 

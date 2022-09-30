@@ -1,4 +1,4 @@
-{% extends 'mainapp/base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}
   Новости
@@ -6,7 +6,7 @@
 
 
 {% block content %}
-{% include 'mainapp/include/main_menu.html'%}
+{% include 'includes/main_menu.html'%}
 
 <div class="container-md">
 <div class="row">
@@ -25,7 +25,7 @@
         </div>
       </div>
     {% endfor %}
-    {% include 'mainapp/include/main_pagination.html' %}
+    {% include 'includes/main_pagination.html' %}
   </div>
 
   <div class="col-lg-4">
@@ -58,5 +58,5 @@
 
 </div>
 
-{% include 'mainapp/include/main_footer.html'%}
+{% include 'includes/main_footer.html'%}
 {% endblock content %}
