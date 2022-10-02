@@ -1,11 +1,11 @@
-{% extends 'mainapp/base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}
     {{ news_object.title|default:"Новости" }}
 {% endblock title %}
 
 {% block content %}
-{% include 'mainapp/include/main_menu.html'%}
+{% include 'includes/main_menu.html'%}
     <div class="row justify-content-center pt-3">
         <div class="col-md-12 col-lg-8">
             <div class="card shadow">
@@ -19,5 +19,5 @@
             </div>
         </div>
     </div>
-{% include 'mainapp/include/main_footer.html'%}
+{% include 'includes/main_footer.html'%}
 {% endblock content %}
