@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Новости
+{% endblock title %}
+
+
+{% block content %}
+{% include 'includes/main_menu.html'%}
+
+<div class="container-md">
+<div class="row">
+  <div class="col-lg-8">
+    {% for item in object_list %}
+    <div class="card my-2">
+      <div class="card-body">
+        <h5 class="card-title">{{ item.title }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+          {{ item.created|date:"Y-m-d h-i-s" }}
+        </h6>
+        <p class="card-text">{{ item.preambule }}</p>
+        <div class="row">
+          <div class="col">
+            <a href="{% url 'mainapp:news_detail' pk=item.pk %}" class="card-link">Подробнее </a>
+          </div>
+          {% if perms.mainapp.change_news %}
+            <div class="col-1 text-center">
+              <a href="{% url 'mainapp:news_update' pk=item.pk %}">
+                <i class="far fa-edit"></i>
+              </a>
+            </div>
+          {% endif %}
+          {% if perms.mainapp.delete_news %}
+            <div class="col-1 text-center">
+              <a href="{% url 'mainapp:news_delete' pk=item.pk %}">
+              <i class="far fa-trash-alt"></i>
+              </a>
+            </div>
+          {% endif %}
+      </div>
+      </div>
+  </div>
+   {% endfor %}
+    {% include 'includes/main_pagination.html' %}
+</div>
+
+  <div class="col-lg-4">
+    <div class="card my-2 sticky-top">
+      <div class="card-header">
+        Фильтры
+      </div>
+      <div class="card-body">
+        <form action="">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Дата от...</span>
+            </div>
+            <input type="date" class="form-control" name="dateFrom">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon2">Дата до...</span>
+            </div>
+            <input type="date" class="form-control" name="dateTo">
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Фильтровать</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+{% include 'includes/main_footer.html'%}
+{% endblock content %}
