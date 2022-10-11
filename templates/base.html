@@ -23,6 +23,9 @@
 </head>
 
 <body>
+{% block messages %}
+{% include 'includes/messages.html' %}
+{% endblock messages %}
 
 {% block content %}
   Write content here
@@ -41,7 +44,15 @@
     <!-- FontAwesome -->
     <script src="{% static '/js/fontawesome.all.min.js' %}"></script>
     {% block js %}
-        Custom js here
+    <script>
+        $(document).ready(function () {
+        {% if messages %}
+        // Toasts
+        $(".toast").toast({ delay: 5000 });
+        $(".toast").toast("show");
+        {% endif %}
+        });
+    </script>
     {% endblock js%}
 
 </body>

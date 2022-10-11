@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ Логи }}
+{% endblock title %}
+
+{% block content %}
+{% include 'includes/main_menu.html'%}
+<div class="container">
+    <div class="row justify-content-end my-2">
+        <div class="col-sm-4 col-lg-2">
+            <a href="{% url 'mainapp:log_download' %}" class="btn btn-primary btn-block" role="button">Скачать </a>
+        </div>
+    </div>
+    <p>
+        <div class="text-center text-muted"><small>last 1000 lines of log
+            file</small>
+        </div>
+        <pre>{{ log }}</pre>
+    </p>
+</div>
+{% include 'includes/main_footer.html'%}
+{% endblock content %}
