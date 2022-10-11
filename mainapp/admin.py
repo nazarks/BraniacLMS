@@ -4,9 +4,6 @@ from django.utils.translation import gettext_lazy as _
 
 from mainapp import models as mainapp_models
 
-# from authapp import models as authapp_models
-# get_user_model()
-
 
 @admin.register(get_user_model())
 class NewsAdmin(admin.ModelAdmin):

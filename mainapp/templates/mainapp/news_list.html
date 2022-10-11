@@ -25,6 +25,13 @@
           <div class="col">
             <a href="{% url 'mainapp:news_detail' pk=item.pk %}" class="card-link">Подробнее </a>
           </div>
+          {% if perms.mainapp.create_news %}
+            <div class="col-1 text-center">
+              <a href="{% url 'mainapp:news_create' %}">
+              <i class="far fa-plus"></i>
+              </a>
+            </div>
+          {% endif %}
           {% if perms.mainapp.change_news %}
             <div class="col-1 text-center">
               <a href="{% url 'mainapp:news_update' pk=item.pk %}">
