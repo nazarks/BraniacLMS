@@ -7,12 +7,12 @@ from mainapp.managers.news_manager import CoursesManager
 
 class News(models.Model):
 
-    title = models.CharField(max_length=256, verbose_name="Title")
-    preambule = models.CharField(max_length=1024, verbose_name="Preambule")
-    body = models.TextField(blank=True, null=True, verbose_name="Body")
-    body_as_markdown = models.BooleanField(default=False, verbose_name="As markdown")
-    created = models.DateTimeField(auto_now_add=True, editable=False, verbose_name="Created")
-    updated = models.DateTimeField(auto_now=True, editable=False, verbose_name="Updated")
+    title = models.CharField(max_length=256, verbose_name=_("Title"))
+    preambule = models.CharField(max_length=1024, verbose_name=_("Preambule"))
+    body = models.TextField(blank=True, null=True, verbose_name=_("Body"))
+    body_as_markdown = models.BooleanField(default=False, verbose_name=_("As markdown"))
+    created = models.DateTimeField(auto_now_add=True, editable=False, verbose_name=_("Created"))
+    updated = models.DateTimeField(auto_now=True, editable=False, verbose_name=_("Updated"))
     deleted = models.BooleanField(default=False)
 
     def __str__(self):
@@ -31,13 +31,13 @@ class News(models.Model):
 class Courses(models.Model):
     objects = CoursesManager()
 
-    name = models.CharField(max_length=256, verbose_name="Name")
-    description = models.TextField(verbose_name="Description", blank=True, null=True)
-    description_as_markdown = models.BooleanField(verbose_name="As markdown", default=False)
-    cost = models.DecimalField(max_digits=8, decimal_places=2, verbose_name="Cost", default=0)
-    cover = models.CharField(max_length=25, default="no_image.svg", verbose_name="Cover")
-    created = models.DateTimeField(auto_now_add=True, verbose_name="Created")
-    updated = models.DateTimeField(auto_now=True, verbose_name="Edited")
+    name = models.CharField(max_length=256, verbose_name=_("Name"))
+    description = models.TextField(verbose_name=_("Description"), blank=True, null=True)
+    description_as_markdown = models.BooleanField(verbose_name=_("As markdown"), default=False)
+    cost = models.DecimalField(max_digits=8, decimal_places=2, verbose_name=_("Cost"), default=0)
+    cover = models.CharField(max_length=25, default="no_image.svg", verbose_name=_("Cover"))
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
+    updated = models.DateTimeField(auto_now=True, verbose_name=_("Edited"))
     deleted = models.BooleanField(default=False)
 
     def __str__(self) -> str:
@@ -47,15 +47,19 @@ class Courses(models.Model):
         self.deleted = True
         self.save()
 
+    class Meta:
+        verbose_name = _("Course")
+        verbose_name_plural = _("Courses")
+
 
 class Lesson(models.Model):
     course = models.ForeignKey(Courses, on_delete=models.CASCADE)
-    num = models.PositiveIntegerField(verbose_name="Lesson number")
-    title = models.CharField(max_length=256, verbose_name="Name")
-    description = models.TextField(verbose_name="Description", blank=True, null=True)
-    description_as_markdown = models.BooleanField(verbose_name="As markdown", default=False)
-    created = models.DateTimeField(auto_now_add=True, verbose_name="Created", editable=False)
-    updated = models.DateTimeField(auto_now=True, verbose_name="Edited", editable=False)
+    num = models.PositiveIntegerField(verbose_name=_("Lesson number"))
+    title = models.CharField(max_length=256, verbose_name=_("Name"))
+    description = models.TextField(verbose_name=_("Description"), blank=True, null=True)
+    description_as_markdown = models.BooleanField(verbose_name=_("As markdown"), default=False)
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"), editable=False)
+    updated = models.DateTimeField(auto_now=True, verbose_name=_("Edited"), editable=False)
     deleted = models.BooleanField(default=False)
 
     def __str__(self) -> str:
@@ -73,9 +77,9 @@ class Lesson(models.Model):
 
 class CourseTeachers(models.Model):
     course = models.ManyToManyField(Courses)
-    name_first = models.CharField(max_length=128, verbose_name="Name")
-    name_second = models.CharField(max_length=128, verbose_name="Surname")
-    day_birth = models.DateField(verbose_name="Birth date")
+    name_first = models.CharField(max_length=128, verbose_name=_("Name"))
+    name_second = models.CharField(max_length=128, verbose_name=_("Surname"))
+    day_birth = models.DateField(verbose_name=_("Birth date"))
     deleted = models.BooleanField(default=False)
 
     def __str__(self) -> str:
